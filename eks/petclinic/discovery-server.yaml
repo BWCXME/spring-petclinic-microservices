@@ -23,6 +23,7 @@ spec:
       labels:
         io.kompose.service: discovery-server
     spec:
+      serviceAccountName: otel-admin    
       containers:
         - name: discovery-server
           image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/discovery-server:latest

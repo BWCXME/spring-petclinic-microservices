@@ -23,6 +23,7 @@ spec:
       labels:
         io.kompose.service: admin-server
     spec:
+      serviceAccountName: otel-admin    
       containers:
         - name: admin-server      
           image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/admin-server:latest         

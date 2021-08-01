@@ -6,6 +6,50 @@
 
 MIND: openjdk:8-jdk-alpine got no bash
 
+## EKS Policy
+
+cat > otel-admin-policy.json <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:*",
+                "xray:*PutTraceSegments*",
+                "cloudwath:*",
+                "ssm:GetParameters",
+                "synthetics:DescribeCanariesLastRun",
+                "ssm-incidents:ListResponsePlans",
+                "sns:*",
+                "iam:GetPolicy",
+                "iam:GetPolicyVersion",
+                "iam:GetRole"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+EOF
+
+aws iam create-policy \
+    --policy-name OtelAmindPolicy \
+    --policy-document file://otel-admin-policy.json
+
+eksctl utils associate-iam-oidc-provider \
+  --region=$AWS_REGION \
+  --cluster=ekslab \
+  --approve
+
+eksctl create iamserviceaccount \
+    --name otel-admin \
+    --namespace default \
+    --cluster ekslab \
+    --attach-policy-arn=arn:aws:iam::${ACCOUNT_ID}:policy/OtelAmindPolicy \
+    --override-existing-serviceaccounts \
+    --approve
+
+
 ## Deploy
 
 ## Grafana & Prometheus

@@ -23,6 +23,7 @@ spec:
       labels:
         io.kompose.service: customers-service
     spec:
+      serviceAccountName: otel-admin    
       containers:
         - name: customers-service
           image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/customers-service:latest
