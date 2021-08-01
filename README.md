@@ -31,9 +31,8 @@ cat discovery-server.yaml | envsubst | kubectl apply -f -
 docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/discovery-server --rm
 cat discovery-server-deployment-debug.yaml | envsubst | kubectl apply -f -
 
-1. Others
-cat admin-server-deployment.yaml | envsubst | kubectl apply -f -
-k apply -f admin-server-service.yaml
+3. Others
+cat admin-server.yaml | envsubst | kubectl apply -f -
 
 cat api-gateway-deployment.yaml.yaml | envsubst | kubectl apply -f -
 k apply -f api-gateway-service.yaml
