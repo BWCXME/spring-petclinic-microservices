@@ -66,12 +66,13 @@ metadata:
     kompose.version: 1.22.0 (HEAD)
   creationTimestamp: null
   labels:
-    io.kompose.service: visits-service
-  name: visits-service
+    io.kompose.service: vets-service
+  name: vets-service
 spec:
   ports:
-    - name: "8082"
-      port: 8082
-      targetPort: 8082
+    - name: "8083"
+      port: 8083
+      targetPort: 8083
   selector:
-    io.kompose.service: visits-service
+    io.kompose.service: vets-service
+
