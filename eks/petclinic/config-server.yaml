@@ -68,9 +68,9 @@ metadata:
   name: config-server
 spec:
   ports:
-    - name: "8888"
-      port: 8888
-      targetPort: 8888
+    - name: "9888"
+      port: 9888
+      targetPort: 9888
   selector:
     io.kompose.service: config-server
 
