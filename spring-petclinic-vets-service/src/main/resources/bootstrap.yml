@@ -12,3 +12,5 @@ spring:
   cloud:
     config:
       uri: http://config-server:9888
+  application:
+    name: vets-service
