@@ -47,7 +47,7 @@ docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/
 cat config.yaml | envsubst | kubectl apply -f -
 
 docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/discovery-server --rm
-
+cat discovery-server-deployment-debug.yaml | envsubst | kubectl apply -f -
 
 
 [![Build Status](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices.svg?branch=master)](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
