@@ -24,16 +24,14 @@ cat config-server.yaml | envsubst | kubectl apply -f -
 docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/config-server --rm
 cat config-server-deployment-debug.yaml | envsubst | kubectl apply -f -
 
-
 2. Discovery Server
-cat discovery-server-deployment.yaml | envsubst | kubectl apply -f -
-k apply -f discovery-server-service.yaml
+cat discovery-server.yaml | envsubst | kubectl apply -f -
 
 - Debug
 docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/discovery-server --rm
 cat discovery-server-deployment-debug.yaml | envsubst | kubectl apply -f -
 
-3. Others
+1. Others
 cat admin-server-deployment.yaml | envsubst | kubectl apply -f -
 k apply -f admin-server-service.yaml
 
