@@ -2,7 +2,7 @@
 
 
 ## Build
-/mvnw clean install -P buildDocker
+./mvnw clean install -P buildDocker
 
 ## Deploy
 
@@ -38,6 +38,12 @@ k apply -f vets-service-service.yaml
 
 cat visits-service-deployment.yaml.yaml | envsubst | kubectl apply -f -
 k apply -f visits-service-service.yaml
+
+
+## Debug
+docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/config-server --rm
+cat config.yaml | envsubst | kubectl apply -f -
+
 
 
 [![Build Status](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices.svg?branch=master)](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
