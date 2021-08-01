@@ -33,7 +33,7 @@ cat > otel-admin-policy.json <<EOF
 EOF
 
 aws iam create-policy \
-    --policy-name OtelAmindPolicy \
+    --policy-name OtelAdminPolicy \
     --policy-document file://otel-admin-policy.json
 
 eksctl utils associate-iam-oidc-provider \
@@ -45,8 +45,15 @@ eksctl create iamserviceaccount \
     --name otel-admin \
     --namespace default \
     --cluster ekslab \
-    --attach-policy-arn=arn:aws:iam::${ACCOUNT_ID}:policy/OtelAmindPolicy \
+    --attach-policy-arn=arn:aws:iam::${ACCOUNT_ID}:policy/OtelAdminPolicy \
     --override-existing-serviceaccounts \
+    --approve
+
+eksctl update iamserviceaccount \
+    --name otel-admin \
+    --namespace default \
+    --cluster ekslab \
+    --attach-policy-arn=arn:aws:iam::${ACCOUNT_ID}:policy/OtelAdminPolicy \
     --approve
 
 
