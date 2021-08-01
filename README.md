@@ -21,6 +21,11 @@ kubectl apply -f *service.yaml
 cat config-server.yaml | envsubst | kubectl apply -f -
 k apply -f config-server-service.yaml
 
+- Debug
+docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/config-server --rm
+cat config-server-deployment-debug.yaml | envsubst | kubectl apply -f -
+
+
 2. Discovery Server
 cat discovery-server-deployment.yaml | envsubst | kubectl apply -f -
 k apply -f discovery-server-service.yaml
@@ -46,9 +51,7 @@ cat visits-service-deployment.yaml.yaml | envsubst | kubectl apply -f -
 k apply -f visits-service-service.yaml
 
 
-## Debug
-docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/config-server --rm
-cat config.yaml | envsubst | kubectl apply -f -
+
 
 
 

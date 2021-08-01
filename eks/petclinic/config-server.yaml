@@ -27,11 +27,13 @@ spec:
         - image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/config-server:latest
           name: config-server
           ports:
-            - containerPort: 8888
+            - containerPort: 9888
           resources:
             limits:
               memory: "536870912"
           env:
+            - name: JAVA_TOOL_OPTIONS
+              value: -javaagent:/opt/aws-opentelemetry-agent.jar
             - name: OTEL_OTLP_ENDPOINT
               value: "localhost:4317"
             - name: OTEL_RESOURCE
