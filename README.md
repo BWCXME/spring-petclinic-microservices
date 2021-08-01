@@ -1,5 +1,45 @@
 # Distributed version of the Spring PetClinic Sample Application built with Spring Cloud 
 
+
+## Build
+/mvnw clean install -P buildDocker
+
+## Deploy
+
+## Grafana & Prometheus
+cat grafana-server-deployment.yaml | envsubst | kubectl apply -f -
+cat prometheus-server-deployment.yaml | envsubst | kubectl apply -f -
+envsubst < grafana-server-deployment.yaml | kubectl apply -f - – 
+https://stackoverflow.com/questions/48296082/how-to-set-dynamic-values-with-kubernetes-yaml-file
+
+## Petclinic Services
+https://github.com/patflynn/spring-petclinic-kubernetes
+kubectl apply -f *service.yaml
+1. Config Server
+cat config-server-deployment.yaml | envsubst | kubectl apply -f -
+k apply -f config-server-service.yaml
+
+2. Discovery Server
+cat discovery-server-deployment.yaml | envsubst | kubectl apply -f -
+k apply -f discovery-server-service.yaml
+
+3. Others
+cat admin-server-deployment.yaml | envsubst | kubectl apply -f -
+k apply -f admin-server-service.yaml
+
+cat api-gateway-deployment.yaml.yaml | envsubst | kubectl apply -f -
+k apply -f api-gateway-service.yaml
+
+cat customers-service-deployment.yaml.yaml | envsubst | kubectl apply -f -
+k apply -f customers-service-service.yaml
+
+cat vets-service-deployment.yaml.yaml | envsubst | kubectl apply -f -
+k apply -f vets-service-service.yaml
+
+cat visits-service-deployment.yaml.yaml | envsubst | kubectl apply -f -
+k apply -f visits-service-service.yaml
+
+
 [![Build Status](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices.svg?branch=master)](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 This microservices branch was initially derived from [AngularJS version](https://github.com/spring-petclinic/spring-petclinic-angular1) to demonstrate how to split sample Spring application into [microservices](http://www.martinfowler.com/articles/microservices.html).

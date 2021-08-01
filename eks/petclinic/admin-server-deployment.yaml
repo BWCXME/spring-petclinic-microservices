@@ -25,12 +25,14 @@ spec:
     spec:
       containers:
         - command:
-            - ./dockerize
-            - -wait=tcp://discovery-server:8761
-            - -timeout=60s
-            - --
-            - java
-            - org.springframework.boot.loader.JarLauncher
+          - ./wait-for-it.sh
+          - discovery-server:8761
+          - --timeout=60
+          - --
+          - java
+          - -Djava.security.egd=file:/dev/./urandom
+          - -jar
+          - /app.jar            
           image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/admin-server
           name: admin-server
           ports:
@@ -38,5 +40,26 @@ spec:
           resources:
             limits:
               memory: "536870912"
+          env:
+            - name: OTEL_OTLP_ENDPOINT
+              value: "localhost:4317"
+            - name: OTEL_RESOURCE
+              value: ClusterName=ekslab
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.namespace=AWSObservability,service.name=PetClinicAdminServer"
+          imagePullPolicy: Always              
+        - name: aws-otel-collector
+          image: amazon/aws-otel-collector:latest
+          env:
+            - name: AWS_REGION
+              value: $AWS_REGION
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 256m
+              memory: 512Mi
+            requests:
+              cpu: 32m
+              memory: 24Mi
       restartPolicy: Always
 status: {}
