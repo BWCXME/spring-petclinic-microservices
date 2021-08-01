@@ -3,7 +3,7 @@ ADD https://github.com/aws-observability/aws-otel-java-instrumentation/releases/
 ENV JAVA_TOOL_OPTIONS=-javaagent:/opt/aws-opentelemetry-agent.jar
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh wait-for-it.sh
 ENV SPRING_PROFILES_ACTIVE docker
-RUN bash -c 'chmod +x wait-for-it.sh'
+RUN chmod +x wait-for-it.sh
 ARG ARTIFACT_NAME
 COPY ${ARTIFACT_NAME}.jar app.jar
 ENTRYPOINT ["java", "-jar","/app.jar"]
