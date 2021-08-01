@@ -24,7 +24,7 @@ spec:
         io.kompose.service: config-server
     spec:
       containers:
-        - image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/config-server
+        - image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/config-server:latest
           name: config-server
           ports:
             - containerPort: 8888
