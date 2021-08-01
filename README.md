@@ -19,7 +19,6 @@ https://github.com/patflynn/spring-petclinic-kubernetes
 kubectl apply -f *service.yaml
 1. Config Server
 cat config-server.yaml | envsubst | kubectl apply -f -
-k apply -f config-server-service.yaml
 
 - Debug
 docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/config-server --rm

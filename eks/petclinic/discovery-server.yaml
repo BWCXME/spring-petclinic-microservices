@@ -32,6 +32,8 @@ spec:
             limits:
               memory: "536870912"
           env:
+            - name: JAVA_TOOL_OPTIONS
+              value: -javaagent:/opt/aws-opentelemetry-agent.jar          
             - name: OTEL_OTLP_ENDPOINT
               value: "localhost:4317"
             - name: OTEL_RESOURCE
