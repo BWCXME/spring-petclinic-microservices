@@ -3,6 +3,8 @@
 
 ## Build
 ./mvnw clean install -P buildDocker
+./mvnw clean package -P buildDocker
+
 
 ## Deploy
 
