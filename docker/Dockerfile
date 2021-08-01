@@ -1,31 +1,9 @@
-FROM openjdk:11-jre as builder
-WORKDIR application
-ARG ARTIFACT_NAME
-COPY ${ARTIFACT_NAME}.jar application.jar
-RUN java -Djarmode=layertools -jar application.jar extract
-
-# Download dockerize and cache that layer
-ARG DOCKERIZE_VERSION
-RUN wget -O dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
-RUN tar xzf dockerize.tar.gz
-RUN chmod +x dockerize
-
-
-# wget is not installed on adoptopenjdk:11-jre-hotspot
-FROM adoptopenjdk:11-jre-hotspot
-
-WORKDIR application
-
-# Dockerize
-COPY --from=builder application/dockerize ./
-
-ARG EXPOSED_PORT
-EXPOSE ${EXPOSED_PORT}
-
+FROM openjdk:8-jdk-alpine
+ADD https://github.com/aws-observability/aws-otel-java-instrumentation/releases/latest/download/aws-opentelemetry-agent.jar /opt/aws-opentelemetry-agent.jar
+ENV JAVA_TOOL_OPTIONS=-javaagent:/opt/aws-opentelemetry-agent.jar
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh wait-for-it.sh
 ENV SPRING_PROFILES_ACTIVE docker
-
-COPY --from=builder application/dependencies/ ./
-COPY --from=builder application/spring-boot-loader/ ./
-COPY --from=builder application/snapshot-dependencies/ ./
-COPY --from=builder application/application/ ./
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+RUN bash -c 'chmod +x wait-for-it.sh'
+ARG ARTIFACT_NAME
+COPY ${ARTIFACT_NAME}.jar app.jar
+ENTRYPOINT ["java", "-jar","/app.jar"]
