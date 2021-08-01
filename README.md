@@ -31,22 +31,17 @@ cat discovery-server.yaml | envsubst | kubectl apply -f -
 docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/discovery-server --rm
 cat discovery-server-deployment-debug.yaml | envsubst | kubectl apply -f -
 
-3. Others
+3. Customers/Vets/Visits
+cat customers-service.yaml.yaml | envsubst | kubectl apply -f -
+
+cat vets-service.yaml.yaml | envsubst | kubectl apply -f -
+
+cat visits-service.yaml.yaml | envsubst | kubectl apply -f -
+
+4. Admin/API-Gateway
 cat admin-server.yaml | envsubst | kubectl apply -f -
 
-cat api-gateway-deployment.yaml.yaml | envsubst | kubectl apply -f -
-k apply -f api-gateway-service.yaml
-
-cat customers-service-deployment.yaml.yaml | envsubst | kubectl apply -f -
-k apply -f customers-service-service.yaml
-
-cat vets-service-deployment.yaml.yaml | envsubst | kubectl apply -f -
-k apply -f vets-service-service.yaml
-
-cat visits-service-deployment.yaml.yaml | envsubst | kubectl apply -f -
-k apply -f visits-service-service.yaml
-
-
+cat api-gateway.yaml.yaml | envsubst | kubectl apply -f -
 
 
 
