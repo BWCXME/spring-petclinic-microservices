@@ -32,18 +32,22 @@ docker run -it $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/
 cat discovery-server-deployment-debug.yaml | envsubst | kubectl apply -f -
 
 3. Customers/Vets/Visits
-cat customers-service.yaml.yaml | envsubst | kubectl apply -f -
+cat customers-service.yaml | envsubst | kubectl apply -f -
 
-cat vets-service.yaml.yaml | envsubst | kubectl apply -f -
+cat vets-service.yaml | envsubst | kubectl apply -f -
 
-cat visits-service.yaml.yaml | envsubst | kubectl apply -f -
+cat visits-service.yaml | envsubst | kubectl apply -f -
 
 4. Admin/API-Gateway
 cat admin-server.yaml | envsubst | kubectl apply -f -
 
-cat api-gateway.yaml.yaml | envsubst | kubectl apply -f -
+cat api-gateway.yaml | envsubst | kubectl apply -f -
 
+## Verify
 
+1. Discoery Server (Close VPN first)
+
+2. API Gateway
 
 
 
