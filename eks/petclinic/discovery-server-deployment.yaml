@@ -33,7 +33,7 @@ spec:
           - -Djava.security.egd=file:/dev/./urandom
           - -jar
           - /app.jar            
-          image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/discovery-server
+          image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/discovery-server:latest
           name: discovery-server
           ports:
             - containerPort: 8761
