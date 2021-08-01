@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: discovery-server
+  name: discovery-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: discovery-server
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: discovery-server
+    spec:
+      containers:
+        - name: discovery-server
+          image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/discovery-server:latest
+          ports:
+            - containerPort: 8761
+          resources:
+            limits:
+              memory: "536870912"
+          env:
+            - name: OTEL_OTLP_ENDPOINT
+              value: "localhost:4317"
+            - name: OTEL_RESOURCE
+              value: ClusterName=ekslab
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.namespace=AWSObservability,service.name=PetClinicDiscoveryServer"
+          imagePullPolicy: Always              
+        - name: aws-otel-collector
+          image: amazon/aws-otel-collector:latest
+          env:
+            - name: AWS_REGION
+              value: $AWS_REGION
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 256m
+              memory: 512Mi
+            requests:
+              cpu: 32m
+              memory: 24Mi              
+      restartPolicy: Always
+status: {}
