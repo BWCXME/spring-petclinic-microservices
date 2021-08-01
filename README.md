@@ -5,6 +5,7 @@
 ./mvnw clean install -P buildDocker
 ./mvnw clean package -P buildDocker
 
+MIND: openjdk:8-jdk-alpine got no bash
 
 ## Deploy
 
