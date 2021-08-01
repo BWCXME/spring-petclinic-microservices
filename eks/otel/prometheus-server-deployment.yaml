@@ -24,7 +24,7 @@ spec:
         io.kompose.service: prometheus-server
     spec:
       containers:
-        - image: prometheus-server
+        - image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/prometheus-server
           name: prometheus-server
           ports:
             - containerPort: 9090

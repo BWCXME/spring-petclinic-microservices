@@ -24,7 +24,7 @@ spec:
         io.kompose.service: grafana-server
     spec:
       containers:
-        - image: grafana-server
+        - image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/grafana-server
           name: grafana-server
           ports:
             - containerPort: 3000
