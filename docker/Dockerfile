@@ -1,5 +1,4 @@
 FROM openjdk:8-jdk-alpine
-WORKDIR application
 VOLUME /tmp
 ADD https://github.com/aws-observability/aws-otel-java-instrumentation/releases/latest/download/aws-opentelemetry-agent.jar /opt/aws-opentelemetry-agent.jar
 ENV SPRING_PROFILES_ACTIVE docker

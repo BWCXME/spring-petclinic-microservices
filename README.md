@@ -18,7 +18,7 @@ https://stackoverflow.com/questions/48296082/how-to-set-dynamic-values-with-kube
 https://github.com/patflynn/spring-petclinic-kubernetes
 kubectl apply -f *service.yaml
 1. Config Server
-cat config-server-deployment.yaml | envsubst | kubectl apply -f -
+cat config-server.yaml | envsubst | kubectl apply -f -
 k apply -f config-server-service.yaml
 
 2. Discovery Server
