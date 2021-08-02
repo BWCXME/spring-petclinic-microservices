@@ -24,7 +24,7 @@ spec:
       labels:
         io.kompose.service: api-gateway
     spec:
-      serviceAccountName: otel-admin
+      serviceAccountName: petclinic-msa
       containers:
         - name: api-gateway
           image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/api-gateway:latest

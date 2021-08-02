@@ -24,7 +24,7 @@ spec:
       labels:
         io.kompose.service: visits-service
     spec:
-      serviceAccountName: otel-admin    
+      serviceAccountName: petclinic-msa
       containers:
         - name: visits-service
           image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/visits-service:latest
