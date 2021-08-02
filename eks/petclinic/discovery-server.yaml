@@ -8,6 +8,7 @@ metadata:
   labels:
     io.kompose.service: discovery-server
   name: discovery-server
+  namespace: petclinic
 spec:
   replicas: 1
   selector:
@@ -67,6 +68,7 @@ metadata:
   labels:
     io.kompose.service: discovery-server
   name: discovery-server
+  namespace: petclinic
 spec:
   ports:
     - name: "8761"

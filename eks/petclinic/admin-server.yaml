@@ -8,6 +8,7 @@ metadata:
   labels:
     io.kompose.service: admin-server
   name: admin-server
+  namespace: petclinic
 spec:
   replicas: 1
   selector:
@@ -69,6 +70,7 @@ metadata:
   labels:
     io.kompose.service: admin-server
   name: admin-server
+  namespace: petclinic
 spec:
   ports:
     - name: "9090"
