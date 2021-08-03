@@ -14,5 +14,3 @@ spring:
       uri: http://config-server:9888
   application:
     name: customers-service
-server:
-  port: 8081    
