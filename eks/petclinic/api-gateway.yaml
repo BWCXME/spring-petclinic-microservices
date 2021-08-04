@@ -27,7 +27,7 @@ spec:
       serviceAccountName: petclinic-msa
       containers:
         - name: api-gateway
-          image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/api-gateway:latest
+          image: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/spring-petclinic-msa/api-gateway:latest
           ports:
             - containerPort: 8080
           resources:

@@ -26,7 +26,7 @@ spec:
     spec:
       serviceAccountName: petclinic-msa
       containers:
-        - image: $ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic-msa/config-server:latest
+        - image: $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/spring-petclinic-msa/config-server:latest
           name: config-server
           ports:
             - containerPort: 9888
